@@ -1,5 +1,8 @@
 extends Node2D
+class_name Package
 
+# Need to connect signal programmatically because packages will be instanced programmatically
+@onready var GSM: GameStateManager = get_tree().get_first_node_in_group("gsm");
 
 @export var data_creator: PackageDataCreator;
 
@@ -9,10 +12,15 @@ extends Node2D
 var is_bad_package: bool; 
 
 signal player_decided_on_package(accepted: bool, is_bad: bool);
+signal spawned();
 
 
 func _ready() -> void:
 	randomize();
+
+	add_to_group("packages");
+	connect("player_decided_on_package", GSM._on_player_decided);
+	connect("spawned", GSM._on_player_spawned);
 
 	# Just gonna randomly decide if this is a bad package
 	if randi_range(0, 10) > 7:
@@ -26,12 +34,21 @@ func _ready() -> void:
 	label.text = text;
 
 
+func get_package_data() -> Dictionary:
+	return data_creator.get_package_data();
+
+
 # Probably not the best way to handle this but whatever
 func accepted() -> void:
 	emit_signal("player_decided_on_package", true, is_bad_package);
-	call_deferred("queue_free");
+	# TODO: Call Some Exit Animation or Whatever
+	remove_from_group("packages");
+	queue_free();
 
 
+# ^ ditto
 func denied() -> void:
 	emit_signal("player_decided_on_package", false, is_bad_package);
-	call_deferred("queue_free");
+	# TODO: Call Some Exit Animation or Whatever
+	remove_from_group("packages");
+	queue_free();

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ybo7bripcbwf"]
+
+[ext_resource type="Texture2D" uid="uid://bcpmn1qb0niis" path="res://assets/temp/clipboard.png" id="1_3elxb"]
+[ext_resource type="Script" path="res://src/Manifest.gd" id="1_bmb2k"]
+[ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_n1k7n"]
+
+[node name="Manifest" type="Node2D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_bmb2k")
+label = NodePath("Sprite2D/RichTextLabel")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3elxb")
+script = ExtResource("2_n1k7n")
+move_speed = 20.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -90.0
+offset_top = -84.0
+offset_right = 99.0
+offset_bottom = 139.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 22
+text = "Sender: asdlkjasd
+Recipient: adjflakd
+Delivery Address: daslkjs
+Return Address: dajsld"

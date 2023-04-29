@@ -1,10 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvv2hp755puhc"]
+[gd_scene load_steps=8 format=3 uid="uid://bvv2hp755puhc"]
 
+[ext_resource type="Script" path="res://src/GameStateManager.gd" id="1_6t2hr"]
 [ext_resource type="Texture2D" uid="uid://cr0b7w8dnu6o" path="res://assets/temp/game_bg.png" id="1_m15ga"]
+[ext_resource type="Script" path="res://src/TimeManager.gd" id="2_fy00c"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_peix2"]
 [ext_resource type="PackedScene" uid="uid://cbfjhymt0py1o" path="res://scenes/package.tscn" id="3_7en0a"]
+[ext_resource type="PackedScene" uid="uid://b74gosm4pdrfs" path="res://scenes/selector.tscn" id="4_r3c1m"]
+[ext_resource type="PackedScene" uid="uid://ybo7bripcbwf" path="res://scenes/manifest.tscn" id="7_qgiit"]
 
 [node name="Game" type="Node2D"]
+
+[node name="GameStateManager" type="Node" parent="." node_paths=PackedStringArray("manifest", "selector") groups=["gsm"]]
+script = ExtResource("1_6t2hr")
+package_scene = ExtResource("3_7en0a")
+manifest = NodePath("../Manifest")
+selector = NodePath("../Selector")
+
+[node name="TimeManager" type="Node" parent="GameStateManager" node_paths=PackedStringArray("timer", "label")]
+script = ExtResource("2_fy00c")
+timer = NodePath("Timer")
+label = NodePath("../../BackgroundElements/RichTextLabel")
+
+[node name="Timer" type="Timer" parent="GameStateManager/TimeManager"]
+wait_time = 35.0
+autostart = true
 
 [node name="BackgroundElements" type="Node2D" parent="."]
 
@@ -14,5 +33,34 @@ texture = ExtResource("1_m15ga")
 script = ExtResource("2_peix2")
 move_speed = 10.0
 
+[node name="RichTextLabel" type="RichTextLabel" parent="BackgroundElements"]
+offset_left = 793.0
+offset_top = 160.0
+offset_right = 1149.0
+offset_bottom = 274.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]9"
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundElements/RichTextLabel"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 409.0
+offset_bottom = 167.0
+color = Color(0, 0, 0, 0.65098)
+
 [node name="Package" parent="." instance=ExtResource("3_7en0a")]
-position = Vector2(929, 647)
+position = Vector2(908, 629)
+
+[node name="Selector" parent="." instance=ExtResource("4_r3c1m")]
+position = Vector2(434, 946)
+
+[node name="Manifest" parent="." instance=ExtResource("7_qgiit")]
+position = Vector2(1673, 836)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(960, 540)
+
+[connection signal="end_of_day" from="GameStateManager/TimeManager" to="GameStateManager" method="day_over"]
+[connection signal="timeout" from="GameStateManager/TimeManager/Timer" to="GameStateManager/TimeManager" method="_on_timeout"]

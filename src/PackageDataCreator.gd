@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name PackageDataCreator
 
 var package_data = {
@@ -9,6 +9,7 @@ var package_data = {
 	# etc
 };
 
+# TODO: Add More Names and Streets
 var f_names = [
 	"John",
 	"Bradley",

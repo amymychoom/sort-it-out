@@ -6,6 +6,10 @@ extends Sprite2D
 var mouse_relative: Vector2;
 
 
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
+
+
 func _process(delta: float) -> void:
 	position.x -= mouse_relative.x * move_speed * float(delta);
 	position.y -= mouse_relative.y * (move_speed / 2) * float(delta);

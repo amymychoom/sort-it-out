@@ -10,13 +10,13 @@ script = ExtResource("1_aj23w")
 data_creator = NodePath("PackageDataCreator")
 label = NodePath("Sprite2D/RichTextLabel")
 
-[node name="PackageDataCreator" type="Node" parent="."]
+[node name="PackageDataCreator" type="Node2D" parent="."]
 script = ExtResource("1_uw7ww")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gi2iu")
 script = ExtResource("4_jii7o")
-move_speed = 15.0
+move_speed = 12.5
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D"]
 offset_left = 67.0
