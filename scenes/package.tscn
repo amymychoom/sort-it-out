@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbfjhymt0py1o"]
+
+[ext_resource type="Script" path="res://src/Package.gd" id="1_aj23w"]
+[ext_resource type="Script" path="res://src/PackageDataCreator.gd" id="1_uw7ww"]
+[ext_resource type="Texture2D" uid="uid://ctikok0npqhxn" path="res://icon.svg" id="2_gi2iu"]
+[ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="4_jii7o"]
+
+[node name="Package" type="Node2D" node_paths=PackedStringArray("data_creator", "label") groups=["packages"]]
+script = ExtResource("1_aj23w")
+data_creator = NodePath("PackageDataCreator")
+label = NodePath("Sprite2D/RichTextLabel")
+
+[node name="PackageDataCreator" type="Node" parent="."]
+script = ExtResource("1_uw7ww")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gi2iu")
+script = ExtResource("4_jii7o")
+move_speed = 15.0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+offset_left = 67.0
+offset_top = -100.0
+offset_right = 484.0
+offset_bottom = 4.0
+color = Color(0, 0, 0, 0.596078)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = 79.0
+offset_top = -99.0
+offset_right = 459.0
+offset_bottom = 77.0
+bbcode_enabled = true
+text = "sende"
+fit_content = true

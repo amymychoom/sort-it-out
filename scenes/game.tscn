@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvv2hp755puhc"]
+
+[ext_resource type="Texture2D" uid="uid://cr0b7w8dnu6o" path="res://assets/temp/game_bg.png" id="1_m15ga"]
+[ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_peix2"]
+[ext_resource type="PackedScene" uid="uid://cbfjhymt0py1o" path="res://scenes/package.tscn" id="3_7en0a"]
+
+[node name="Game" type="Node2D"]
+
+[node name="BackgroundElements" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="BackgroundElements"]
+position = Vector2(960, 540)
+texture = ExtResource("1_m15ga")
+script = ExtResource("2_peix2")
+move_speed = 10.0
+
+[node name="Package" parent="." instance=ExtResource("3_7en0a")]
+position = Vector2(929, 647)
