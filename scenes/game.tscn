@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvv2hp755puhc"]
 
 [ext_resource type="Script" path="res://src/GameStateManager.gd" id="1_6t2hr"]
-[ext_resource type="Texture2D" uid="uid://cr0b7w8dnu6o" path="res://assets/temp/game_bg.png" id="1_m15ga"]
 [ext_resource type="Script" path="res://src/TimeManager.gd" id="2_fy00c"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_peix2"]
 [ext_resource type="PackedScene" uid="uid://cbfjhymt0py1o" path="res://scenes/package.tscn" id="3_7en0a"]
+[ext_resource type="Texture2D" uid="uid://bxqc02qg2tfl5" path="res://assets/Office/Office_BG.png" id="4_ns62h"]
 [ext_resource type="PackedScene" uid="uid://b74gosm4pdrfs" path="res://scenes/selector.tscn" id="4_r3c1m"]
 [ext_resource type="PackedScene" uid="uid://ybo7bripcbwf" path="res://scenes/manifest.tscn" id="7_qgiit"]
 
@@ -19,31 +19,37 @@ selector = NodePath("../Selector")
 [node name="TimeManager" type="Node" parent="GameStateManager" node_paths=PackedStringArray("timer", "label")]
 script = ExtResource("2_fy00c")
 timer = NodePath("Timer")
-label = NodePath("../../BackgroundElements/RichTextLabel")
+label = NodePath("../../BackgroundElements/Clock/RichTextLabel")
 
 [node name="Timer" type="Timer" parent="GameStateManager/TimeManager"]
-wait_time = 35.0
+wait_time = 25.0
 autostart = true
 
 [node name="BackgroundElements" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="BackgroundElements"]
-position = Vector2(960, 540)
-texture = ExtResource("1_m15ga")
+position = Vector2(960, 481)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_ns62h")
 script = ExtResource("2_peix2")
 move_speed = 10.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BackgroundElements"]
-offset_left = 793.0
-offset_top = 160.0
-offset_right = 1149.0
-offset_bottom = 274.0
+[node name="Clock" type="Sprite2D" parent="BackgroundElements"]
+script = ExtResource("2_peix2")
+move_speed = 10.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BackgroundElements/Clock"]
+offset_left = 784.0
+offset_top = 171.0
+offset_right = 1140.0
+offset_bottom = 285.0
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center]9"
+text = "[center]09 AM"
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundElements/RichTextLabel"]
+[node name="ColorRect" type="ColorRect" parent="BackgroundElements/Clock/RichTextLabel"]
+visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_right = 409.0
@@ -54,13 +60,10 @@ color = Color(0, 0, 0, 0.65098)
 position = Vector2(908, 629)
 
 [node name="Selector" parent="." instance=ExtResource("4_r3c1m")]
-position = Vector2(434, 946)
+position = Vector2(408, 997)
 
 [node name="Manifest" parent="." instance=ExtResource("7_qgiit")]
 position = Vector2(1673, 836)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(960, 540)
 
 [connection signal="end_of_day" from="GameStateManager/TimeManager" to="GameStateManager" method="day_over"]
 [connection signal="timeout" from="GameStateManager/TimeManager/Timer" to="GameStateManager/TimeManager" method="_on_timeout"]

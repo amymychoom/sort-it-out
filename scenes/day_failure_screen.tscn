@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://djdgemjgnhgy1"]
+
+[ext_resource type="Script" path="res://src/Menus/ExitGameButton.gd" id="1_mihqj"]
+
+[node name="DayFailureScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 64.0
+offset_top = 68.0
+offset_right = 1120.0
+offset_bottom = 412.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 100
+text = "You're Fired."
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 1178.0
+offset_top = 892.0
+offset_right = 1852.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 35
+text = "Pack up your stuff and leave"
+script = ExtResource("1_mihqj")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

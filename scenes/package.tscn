@@ -2,34 +2,42 @@
 
 [ext_resource type="Script" path="res://src/Package.gd" id="1_aj23w"]
 [ext_resource type="Script" path="res://src/PackageDataCreator.gd" id="1_uw7ww"]
-[ext_resource type="Texture2D" uid="uid://ctikok0npqhxn" path="res://icon.svg" id="2_gi2iu"]
+[ext_resource type="Texture2D" uid="uid://dnggrsqvf3dt" path="res://assets/Packages/Package1.png" id="3_e12fe"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="4_jii7o"]
 
 [node name="Package" type="Node2D" node_paths=PackedStringArray("data_creator", "label") groups=["packages"]]
 script = ExtResource("1_aj23w")
 data_creator = NodePath("PackageDataCreator")
-label = NodePath("Sprite2D/RichTextLabel")
+label = NodePath("RichTextLabel")
 
 [node name="PackageDataCreator" type="Node2D" parent="."]
 script = ExtResource("1_uw7ww")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_gi2iu")
-script = ExtResource("4_jii7o")
-move_speed = 12.5
-
-[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
-offset_left = 67.0
-offset_top = -100.0
-offset_right = 484.0
-offset_bottom = 4.0
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 116.0
+offset_top = -133.0
+offset_right = 533.0
+offset_bottom = -29.0
 color = Color(0, 0, 0, 0.596078)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
-offset_left = 79.0
-offset_top = -99.0
-offset_right = 459.0
-offset_bottom = 77.0
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = -132.0
+offset_right = 508.0
+offset_bottom = 44.0
 bbcode_enabled = true
 text = "sende"
 fit_content = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_e12fe")
+script = ExtResource("4_jii7o")
+move_speed = 12.5
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.054902, 0.054902, 0.054902, 0.407843)
+show_behind_parent = true
+position = Vector2(0, 23.3333)
+texture = ExtResource("3_e12fe")
+script = ExtResource("4_jii7o")

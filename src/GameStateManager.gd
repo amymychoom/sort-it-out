@@ -7,9 +7,6 @@ class_name GameStateManager
 
 var package_spawn_pos = Vector2(908, 629);
 
-# num of packages the player must successfully clear
-var quota: int = 5;
-
 var failed_packages: int;
 var packages_cleared: int;
 
@@ -19,13 +16,9 @@ func _on_player_decided(player_accepted_package: bool, package_is_bad: bool) -> 
 	# The player accepted the package and it was bad
 	if player_accepted_package && package_is_bad:
 		failed_packages += 1;
-		print("DUMB IDIOT!!");
 	# The player denied the package and it was good
 	elif !player_accepted_package && !package_is_bad:
 		failed_packages += 1;
-		print("DUMBER IDIOT!!");
-	else:
-		print("good work");
 	
 	packages_cleared += 1;
 
@@ -37,11 +30,10 @@ func _on_player_decided(player_accepted_package: bool, package_is_bad: bool) -> 
 
 func day_over() -> void:
 	var successful_packages = packages_cleared - failed_packages;
-	if successful_packages >= quota:
-		# TODO: Replace with game over and next day menus
-		print("Today Went Well.");
+	if successful_packages >= Global.quota:
+		Global.next_day();
 	else:
-		print("You are fired.");
+		Global.game_over();
 
 
 func _on_player_spawned() -> void:

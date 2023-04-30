@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq1rvrxogfhx6"]
+
+[ext_resource type="Script" path="res://src/Menus/ExitGameButton.gd" id="1_gucl0"]
+[ext_resource type="Script" path="res://src/Menus/PlayButton.gd" id="1_xgdoi"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 87.0
+offset_top = 85.0
+offset_right = 733.0
+offset_bottom = 417.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 102
+text = "Fulfillment Center"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 133.0
+offset_top = 417.0
+offset_right = 550.0
+offset_bottom = 889.0
+theme_override_constants/separation = 21
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 59
+text = "Play"
+script = ExtResource("1_xgdoi")
+
+[node name="ExitGameButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 59
+text = "Exit"
+script = ExtResource("1_gucl0")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/PlayButton" to="CanvasLayer/VBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ExitGameButton" to="CanvasLayer/VBoxContainer/ExitGameButton" method="_on_pressed"]

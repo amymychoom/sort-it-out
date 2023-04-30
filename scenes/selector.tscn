@@ -1,29 +1,31 @@
 [gd_scene load_steps=4 format=3 uid="uid://b74gosm4pdrfs"]
 
 [ext_resource type="Script" path="res://src/PackageSelector.gd" id="1_6p231"]
-[ext_resource type="Texture2D" uid="uid://dmrx0l6plfmex" path="res://assets/temp/selector.png" id="1_l5pre"]
+[ext_resource type="Texture2D" uid="uid://yiqseom14rxs" path="res://assets/Office/PackageSelector.png" id="2_t1io7"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_uplh1"]
 
 [node name="selector" type="Node2D"]
 script = ExtResource("1_6p231")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_l5pre")
+texture = ExtResource("2_t1io7")
 script = ExtResource("2_uplh1")
 move_speed = 20.0
 
 [node name="DenyButton" type="Button" parent="Sprite2D"]
-offset_left = -171.0
-offset_top = -351.0
-offset_right = 1.0
-offset_bottom = -168.0
+offset_left = -156.0
+offset_top = -266.0
+offset_right = 16.0
+offset_bottom = -83.0
+focus_mode = 0
 flat = true
 
 [node name="AcceptButton" type="Button" parent="Sprite2D"]
-offset_left = 12.0
-offset_top = -362.0
-offset_right = 204.0
-offset_bottom = -157.0
+offset_left = 23.0
+offset_top = -244.0
+offset_right = 172.0
+offset_bottom = -105.0
+focus_mode = 0
 flat = true
 
 [connection signal="button_up" from="Sprite2D/DenyButton" to="." method="_on_deny_button_up"]
