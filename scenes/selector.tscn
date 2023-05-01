@@ -1,30 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://b74gosm4pdrfs"]
+[gd_scene load_steps=6 format=3 uid="uid://b74gosm4pdrfs"]
 
 [ext_resource type="Script" path="res://src/PackageSelector.gd" id="1_6p231"]
+[ext_resource type="AudioStream" uid="uid://bssf8vuvjc3xh" path="res://assets/SFX/misc_menu_4.wav" id="2_26nfy"]
 [ext_resource type="Texture2D" uid="uid://yiqseom14rxs" path="res://assets/Office/PackageSelector.png" id="2_t1io7"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_uplh1"]
+[ext_resource type="AudioStream" uid="uid://b7ibn3wfgdcny" path="res://assets/SFX/misc_menu_3.wav" id="3_nmsbn"]
 
-[node name="selector" type="Node2D"]
+[node name="selector" type="Node2D" node_paths=PackedStringArray("audio_player")]
 script = ExtResource("1_6p231")
+audio_player = NodePath("AudioStreamPlayer")
+accept_sound = ExtResource("2_26nfy")
+deny_sound = ExtResource("3_nmsbn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -13.117
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.875, 0.875)
 texture = ExtResource("2_t1io7")
 script = ExtResource("2_uplh1")
 move_speed = 20.0
 
 [node name="DenyButton" type="Button" parent="Sprite2D"]
-offset_left = -156.0
-offset_top = -266.0
-offset_right = 16.0
-offset_bottom = -83.0
+offset_left = -154.286
+offset_top = -416.0
+offset_right = 17.7143
+offset_bottom = -233.0
 focus_mode = 0
 flat = true
 
 [node name="AcceptButton" type="Button" parent="Sprite2D"]
-offset_left = 23.0
-offset_top = -244.0
-offset_right = 172.0
-offset_bottom = -105.0
+offset_left = 30.8571
+offset_top = -378.286
+offset_right = 179.857
+offset_bottom = -239.286
 focus_mode = 0
 flat = true
 

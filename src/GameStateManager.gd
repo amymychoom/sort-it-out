@@ -5,10 +5,16 @@ class_name GameStateManager
 @export var manifest: PackageDataCreator;
 @export var selector: Node2D;
 
-var package_spawn_pos = Vector2(908, 629);
+
+var package_spawn_pos : Vector2;
 
 var failed_packages: int;
 var packages_cleared: int;
+
+
+func _ready() -> void:
+	var pkg = get_tree().get_first_node_in_group("packages");
+	package_spawn_pos = pkg.position;
 
 
 func _on_player_decided(player_accepted_package: bool, package_is_bad: bool) -> void:
@@ -30,10 +36,9 @@ func _on_player_decided(player_accepted_package: bool, package_is_bad: bool) -> 
 
 func day_over() -> void:
 	var successful_packages = packages_cleared - failed_packages;
-	if successful_packages >= Global.quota:
-		Global.next_day();
-	else:
-		Global.game_over();
+	Global.success_packages = successful_packages;
+	Global.failed_packages = failed_packages;
+	get_tree().change_scene_to_file("res://scenes/end_of_day_screen.tscn");
 
 
 func _on_player_spawned() -> void:

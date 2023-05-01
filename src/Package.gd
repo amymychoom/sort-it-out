@@ -1,7 +1,7 @@
 extends Node2D
 class_name Package
 
-# Need to connect signal programmatically because packages will be instanced programmatically
+# Need to connect signal programmatically because packages will be instanced
 @onready var GSM: GameStateManager = get_tree().get_first_node_in_group("gsm");
 
 @export var data_creator: PackageDataCreator;
@@ -28,9 +28,11 @@ func _ready() -> void:
 	else:
 		is_bad_package = false;
 
-	# =========== DEBUG ===================
 	var data = data_creator.get_package_data();
-	var text = "SENDER: " + data["sender"] + ", RECIP: " + data["recipient"] + ", RET: " + data["return_addr"] + ", TO: " + data["deliver_addr"] + ", BAD: " + str(is_bad_package);
+	var text = "SENDER: " + data["sender"] + \
+				",\nRECIP: " + data["recipient"] + \
+				",\nRET: " + data["return_addr"] + \
+				",\nTO: " + data["deliver_addr"];
 	label.text = text;
 
 

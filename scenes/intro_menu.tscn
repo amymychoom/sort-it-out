@@ -1,11 +1,155 @@
-[gd_scene load_steps=2 format=3 uid="uid://l0y6p28aidql"]
+[gd_scene load_steps=8 format=3 uid="uid://l0y6p28aidql"]
 
 [ext_resource type="Script" path="res://src/Menus/IntroMenu.gd" id="1_vfcbh"]
+[ext_resource type="Texture2D" uid="uid://n7qo8dqmsr81" path="res://assets/Intro/NewspaperAd.png" id="2_4f8wj"]
+[ext_resource type="AudioStream" uid="uid://bx8i5iu26e418" path="res://assets/SFX/b423b42.wav" id="2_6swcd"]
+[ext_resource type="Script" path="res://src/Menus/IntroAnimation.gd" id="2_vxy38"]
+
+[sub_resource type="Animation" id="Animation_kmdbp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewspaperAd:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewspaperAd:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-208, -285)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewspaperAd:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0790995]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewspaperAd:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.11125, 1.11125)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hw6x7"]
+resource_name = "show_intro"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewspaperAd:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewspaperAd:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-208, -108), Vector2(89, 214)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewspaperAd:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0790995, -0.113446]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewspaperAd:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.11125, 1.11125), Vector2(0.819, 0.819)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8m3c"]
+_data = {
+"RESET": SubResource("Animation_kmdbp"),
+"show_intro": SubResource("Animation_hw6x7")
+}
 
 [node name="intro" type="Node2D"]
 script = ExtResource("1_vfcbh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6swcd")
+volume_db = -14.991
+pitch_scale = 0.68
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("anim")]
+script = ExtResource("2_vxy38")
+anim = NodePath("AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -13,22 +157,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 50.0
-offset_top = 55.0
-offset_right = 1866.0
-offset_bottom = 544.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 77
-text = "Blah Blah Blah Blah Blah. Intro Text. Update when intro has been written."
+[node name="NewspaperAd" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(-208, -285)
+rotation = 0.0790995
+scale = Vector2(1.11125, 1.11125)
+texture = ExtResource("2_4f8wj")
+centered = false
 
 [node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 1426.0
 offset_top = 888.0
 offset_right = 1820.0
 offset_bottom = 992.0
 theme_override_font_sizes/font_size = 59
 text = "Continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+speed_scale = 0.45
+libraries = {
+"": SubResource("AnimationLibrary_i8m3c")
+}
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_continue"]

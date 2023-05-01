@@ -12,15 +12,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 64.0
 offset_top = 68.0
-offset_right = 1120.0
-offset_bottom = 412.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-text = "You're Fired."
+offset_right = 1838.0
+offset_bottom = 882.0
+theme_override_colors/default_color = Color(0.921569, 0.921569, 0.921569, 1)
+theme_override_font_sizes/normal_font_size = 76
+text = "You've failed to fulfill your daily quota.
+
+You are fired."
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 1178.0

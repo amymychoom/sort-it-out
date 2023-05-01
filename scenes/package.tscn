@@ -1,36 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbfjhymt0py1o"]
+[gd_scene load_steps=6 format=3 uid="uid://cbfjhymt0py1o"]
 
 [ext_resource type="Script" path="res://src/Package.gd" id="1_aj23w"]
 [ext_resource type="Script" path="res://src/PackageDataCreator.gd" id="1_uw7ww"]
 [ext_resource type="Texture2D" uid="uid://dnggrsqvf3dt" path="res://assets/Packages/Package1.png" id="3_e12fe"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="4_jii7o"]
+[ext_resource type="FontFile" uid="uid://bmp3m6fxj0wdf" path="res://assets/Fonts/Comili-Book.otf" id="5_wtp6s"]
 
 [node name="Package" type="Node2D" node_paths=PackedStringArray("data_creator", "label") groups=["packages"]]
 script = ExtResource("1_aj23w")
 data_creator = NodePath("PackageDataCreator")
-label = NodePath("RichTextLabel")
+label = NodePath("Sprite2D/RichTextLabel")
 
 [node name="PackageDataCreator" type="Node2D" parent="."]
 script = ExtResource("1_uw7ww")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = 116.0
 offset_top = -133.0
 offset_right = 533.0
 offset_bottom = -29.0
 color = Color(0, 0, 0, 0.596078)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 128.0
-offset_top = -132.0
-offset_right = 508.0
-offset_bottom = 44.0
-bbcode_enabled = true
-text = "sende"
-fit_content = true
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+position = Vector2(-1, 0)
+scale = Vector2(0.47963, 0.47963)
 texture = ExtResource("3_e12fe")
 script = ExtResource("4_jii7o")
 move_speed = 12.5
@@ -41,3 +35,15 @@ show_behind_parent = true
 position = Vector2(0, 23.3333)
 texture = ExtResource("3_e12fe")
 script = ExtResource("4_jii7o")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -309.0
+offset_top = -90.0
+offset_right = 189.0
+offset_bottom = 219.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_wtp6s")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "sende"
+fit_content = true

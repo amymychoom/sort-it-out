@@ -1,25 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://ybo7bripcbwf"]
+[gd_scene load_steps=5 format=3 uid="uid://ybo7bripcbwf"]
 
 [ext_resource type="Script" path="res://src/Manifest.gd" id="1_bmb2k"]
 [ext_resource type="Script" path="res://src/ScrollingBackgroundObject.gd" id="2_n1k7n"]
 [ext_resource type="Texture2D" uid="uid://bs4cty2fncyxm" path="res://assets/Office/Clipboard.png" id="2_raldq"]
+[ext_resource type="FontFile" uid="uid://bmp3m6fxj0wdf" path="res://assets/Fonts/Comili-Book.otf" id="4_uebt1"]
 
 [node name="Manifest" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_bmb2k")
 label = NodePath("Sprite2D/RichTextLabel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.757407, 0.757407)
 texture = ExtResource("2_raldq")
 script = ExtResource("2_n1k7n")
 move_speed = 20.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
-offset_left = -163.0
-offset_top = -68.0
-offset_right = 150.0
-offset_bottom = 303.0
+offset_left = -218.0
+offset_top = -205.0
+offset_right = 212.0
+offset_bottom = 328.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 22
+theme_override_fonts/normal_font = ExtResource("4_uebt1")
+theme_override_font_sizes/normal_font_size = 46
 text = "Sender: asdlkjasd
 Recipient: adjflakd
 Delivery Address: daslkjs

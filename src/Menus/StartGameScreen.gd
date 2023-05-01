@@ -4,11 +4,15 @@ extends Node2D
 
 @export var label: RichTextLabel;
 @export var quota_label: RichTextLabel;
+@export var audio: AudioStreamPlayer;
 
 
 func _ready() -> void:
+	audio.play();
 	label.text = "[center]9AM - Day " + str(Global.today);
 	quota_label.text = "[center] Quota: " + str(Global.quota) + " Packages Delivered Successfully.";
+	await audio.finished;
+	_on_timeout();
 
 
 func _on_timeout() -> void:

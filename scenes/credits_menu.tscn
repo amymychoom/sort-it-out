@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://pbbxkq1f072s"]
+
+[ext_resource type="Script" path="res://src/Menus/BackToMenuButton.gd" id="1_jc0kx"]
+
+[node name="CreditsMenu" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -843.0
+offset_top = -442.0
+offset_right = 843.0
+offset_bottom = 442.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 29
+theme_override_font_sizes/bold_font_size = 37
+theme_override_font_sizes/italics_font_size = 23
+bbcode_enabled = true
+text = "Made for Ludum Dare 53 
+
+
+[b]Programming, Art, & Design[/b]
+Woathenry
+
+
+[b]Sound and Music[/b] 
+[i]All audio assets sourced from OpenGameArt.org.[/i]
+UI & Menu Sounds by Lokif
+Dungeon Ambience by JaggedStone
+Dark Ambience by Ogrebane
+Doorbell Ring by Dub
+Steamboat Engine by Spring Spring
+Loading Screen Loop by Brandon Morris
+The Field of Dreams (Main Menu) by pauliuw
+
+Thanks for Playing!"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 1439.0
+offset_top = 927.0
+offset_right = 1852.0
+offset_bottom = 1024.0
+theme_override_font_sizes/font_size = 43
+text = "Back"
+script = ExtResource("1_jc0kx")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://wprk6axdwpkl"]
 
-[ext_resource type="Script" path="res://src/Menus/IntroMenu.gd" id="1_ddfq0"]
+[ext_resource type="Script" path="res://src/Menus/DaySuccessScreen.gd" id="1_dbylf"]
 
-[node name="DaySuccessScreen" type="Node2D"]
-script = ExtResource("1_ddfq0")
+[node name="DaySuccessScreen" type="Node2D" node_paths=PackedStringArray("success_label")]
+script = ExtResource("1_dbylf")
+success_label = NodePath("CanvasLayer/RichTextLabel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -13,14 +14,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 66.0
 offset_top = 82.0
 offset_right = 1866.0
-offset_bottom = 588.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 98
+offset_bottom = 844.0
+theme_override_colors/default_color = Color(0.956863, 0.956863, 0.956863, 1)
+theme_override_font_sizes/normal_font_size = 62
 text = "What a successful day!
 
 [Update with statistics]"

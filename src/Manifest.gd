@@ -24,7 +24,10 @@ func display_package_manifest() -> void:
 		var field_to_fudge = get_rand_in_dict(current_package.get_package_data());
 		current_package.get_package_data()[field_to_fudge] = get_some_name() if field_to_fudge == "sender" || field_to_fudge == "recipient" else get_some_address(); 
 	
-	label.text = "Sender: " + current_package.get_package_data()["sender"] + " Recipient: " + current_package.get_package_data()["recipient"] + " Delivery Address: " + current_package.get_package_data()["deliver_addr"] + " Return Address: " + current_package.get_package_data()["return_addr"];
+	label.text = "Sender: " + current_package.get_package_data()["sender"] + \
+				"\nRecipient: " + current_package.get_package_data()["recipient"] + \
+				"\nReturn Address: " + current_package.get_package_data()["return_addr"] + \
+				"\nDelivery Address: " + current_package.get_package_data()["deliver_addr"];
 
 
 func get_rand_in_dict(dict: Dictionary) -> String:
